@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  ssl-analyzer:
+    image: ssl-analyzer
+    container_name: ssl-analyzer
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8181:8080"
+    restart: always

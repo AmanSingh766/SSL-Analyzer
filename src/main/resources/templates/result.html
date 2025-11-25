@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SSL Analysis Result</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<div class="result-container">
+    <a href="/" class="back-btn">⬅ Back</a>
+    <h1>🔒 SSL Analysis Result for <span th:text="${hostname}"></span></h1>
+
+    <div class="summary-cards">
+        <div class="card"><h3>Security Grade</h3><p th:text="${result.securityGrade}"></p></div>
+        <div class="card"><h3>Days Remaining</h3><p th:text="${result.daysRemaining}"></p></div>
+        <div class="card"><h3>Certificate Status</h3><p th:text="${result.certificateStatus}"></p></div>
+        <div class="card"><h3>Protocol</h3><p th:text="${result.protocol}"></p></div>
+    </div>
+
+    <div class="gauge-section">
+        <svg viewBox="0 0 36 36" class="gauge">
+            <path class="gauge-bg"
+                  d="M18 2.0845
+               a 15.9155 15.9155 0 0 1 0 31.831
+               a 15.9155 15.9155 0 0 1 0 -31.831"/>
+            <path class="gauge-progress"
+                  th:attr="stroke-dasharray=${result.securityScore + ',100'}"
+                  d="M18 2.0845
+               a 15.9155 15.9155 0 0 1 0 31.831
+               a 15.9155 15.9155 0 0 1 0 -31.831"/>
+        </svg>
+        <div class="gauge-text" th:text="${result.securityScore + '%'}"></div>
+        <h3>Security Score</h3>
+    </div>
+
+    <section class="details">
+        <h2>📋 Certificate Details</h2>
+
+        <h3>Basic Information</h3>
+        <p><b>Common Name:</b> <span th:text="${result.commonName}"></span></p>
+        <p><b>Organization:</b> <span th:text="${result.organization}"></span></p>
+        <p><b>Serial Number:</b> <span th:text="${result.serialNumber}"></span></p>
+        <p><b>Valid From:</b> <span th:text="${result.validFrom}"></span></p>
+        <p><b>Valid Until:</b> <span th:text="${result.validUntil}"></span></p>
+
+        <h3>Issuer Information</h3>
+        <p><b>Issuer Name:</b> <span th:text="${result.issuerName}"></span></p>
+        <p><b>Issuer Organization:</b> <span th:text="${result.issuerOrganization}"></span></p>
+        <p><b>Self-Signed:</b> <span th:text="${result.selfSigned}"></span></p>
+        <p><b>Cipher Suite:</b> <span th:text="${result.cipherSuite}"></span></p>
+        <p><b>Weak Cipher:</b> <span th:text="${result.weakCipher}"></span></p>
+
+        <h3>Subject Alternative Names (SANs)</h3>
+        <p><span th:text="${result.sans}"></span></p>
+    </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SSL Certificate Analyzer</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<div class="container">
+    <h1>🔒 SSL Certificate Analyzer</h1>
+    <p class="subtitle">Analyze SSL certificates and identify security issues</p>
+
+    <form th:action="@{/analyze}" method="post">
+        <input type="text" name="hostname" placeholder="Enter Website URL (e.g. https://www.youtube.com)" required>
+        <button type="submit">🔍 Analyze</button>
+    </form>
+</div>
+</body>
+</html>
